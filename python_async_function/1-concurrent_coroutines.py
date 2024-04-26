@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-lets execute multiple coroutines at the same time with async
+Let's execute multiple coroutines at the same time with async
 """
 import asyncio
 from typing import List
@@ -14,4 +14,4 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
     list_float: List[float] = []
     for i in range(n):
         list_float.append(await wait_random(max_delay))
-        return sorted(list_float)
+    return sorted(list_float)
