@@ -1,17 +1,14 @@
 #!/usr/bin/env python3
-"""
-Let's execute multiple coroutines at the same time with async
-"""
+"""Measure runtime"""
 import asyncio
-from typing import List
-wait_random = __import__('0-basic_async_syntax').wait_random
+import time
+
+wait = __import__('1-concurrent_coroutines').wait_n
 
 
-async def wait_n(n: int, max_delay: int) -> List[float]:
-    """
-    wait_n function
-    """
-    list_float: List[float] = []
-    for i in range(n):
-        list_float.append(await wait_random(max_delay))
-    return sorted(list_float)
+def measure_time(n: int, max_delay: int) -> float:
+    """measure runtime"""
+    start_time = time.perf_counter()
+    asyncio.run(wait(n, max_delay))
+    end_time = time.perf_counter()
+    return (end_time - start_time) / n
